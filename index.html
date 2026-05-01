@@ -1,11 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Repartidor de gastos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Repartidor de gastos 🚀</h1>
-  <p>Primera web publicada por Fabián.</p>
+  <main class="app">
+    <h1>Repartidor de gastos</h1>
+
+    <section class="panel form-panel" aria-labelledby="form-title">
+      <h2 id="form-title">Agregar persona</h2>
+
+      <form id="person-form" novalidate>
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="alias">Alias de pago</label>
+          <input id="alias" name="alias" type="text" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="paid">Importe pagado</label>
+          <input id="paid" name="paid" type="text" value="0.00" inputmode="decimal">
+        </div>
+
+        <div class="field">
+          <label for="payer">Pagador</label>
+          <input id="payer" name="payer" type="text" list="payer-options" autocomplete="off">
+          <datalist id="payer-options"></datalist>
+        </div>
+
+        <label class="check">
+          <input id="minor" name="minor" type="checkbox">
+          <span>Es menor de edad</span>
+        </label>
+
+        <p id="message" class="message" role="alert" aria-live="polite"></p>
+
+        <div class="actions">
+          <button type="submit">Agregar</button>
+          <button type="button" id="clear-button" class="secondary">Limpiar lista</button>
+        </div>
+      </form>
+    </section>
+
+    <div class="workspace">
+      <section class="panel people-panel" aria-labelledby="people-title">
+        <h2 id="people-title">Personas</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Alias</th>
+                <th>Tipo</th>
+                <th>Pagador</th>
+                <th class="number">Pagado</th>
+                <th class="action-col"></th>
+              </tr>
+            </thead>
+            <tbody id="people-body">
+              <tr class="empty-row">
+                <td colspan="6">No hay personas cargadas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="list-actions">
+          <button type="button" id="calculate-button" disabled>Ejecutar cálculo</button>
+        </div>
+      </section>
+
+      <section class="panel result-panel" aria-labelledby="result-title">
+        <h2 id="result-title">Resultado</h2>
+        <pre id="result"></pre>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
